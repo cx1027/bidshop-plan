@@ -10,23 +10,11 @@ import java.util.List;
 
 public class HomePage extends BasePage {
 
-    @FindBy(xpath = "//input[@data-testid='search-bar']")
-    WebElement searchBar;
-
-    @FindBy(xpath = "//a[contains(text(),'Meat')]")
-    WebElement meatCategory;
-
-    @FindBy(xpath = "//a[contains(text(),'Seafood')]")
-    WebElement seafoodCategory;
-
-    @FindBy(xpath = "//a[contains(text(),'Bakery')]")
-    WebElement bakeryCategory;
+    @FindBy(xpath = "//div[contains(@class,'product-card') or contains(@class,'product')]")
+    WebElement productCard;
 
     @FindBy(xpath = "//a[@data-testid='nav-login']")
     WebElement loginToBuyButton;
-
-    @FindBy(xpath = "//div[contains(@class,'product-card') or contains(@class,'product')]")
-    WebElement productCard;
 
     @FindBy(xpath = "//button[contains(text(),'Log out')]")
     WebElement logoutButton;
@@ -49,24 +37,8 @@ public class HomePage extends BasePage {
         return driver.getTitle();
     }
 
-    public boolean isSearchBarVisible() {
-        return isDisplayed(searchBar);
-    }
-
     public boolean areProductsLoaded() {
         return isDisplayed(productCard);
-    }
-
-    public void clickMeatCategory() {
-        click(meatCategory);
-    }
-
-    public void clickSeafoodCategory() {
-        click(seafoodCategory);
-    }
-
-    public void clickBakeryCategory() {
-        click(bakeryCategory);
     }
 
     public void clickLoginToBuy() {
@@ -75,10 +47,6 @@ public class HomePage extends BasePage {
 
     public void clickLogout() {
         click(logoutButton);
-    }
-
-    public void search(String keyword) {
-        sendKeys(searchBar, keyword);
     }
 
     public void clickAddToCart() {
