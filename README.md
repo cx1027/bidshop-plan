@@ -51,14 +51,14 @@ bidshop-automation/
 
 ## Test Coverage (25 Tests)
 
-| Module | Test Class | # Tests |
-|---|---|---|
-| Home Page | `HomePageTest` | 2 |
-| Login | `LoginPageTest` | 4 |
-| Register | `RegisterPageTest` | 5 |
-| Cart | `CartPageTest` | 3 |
-| Search & Filter | `SearchAndFilterPageTest` | 10 |
-| Checkout | `CheckoutPageTest` | 1 |
+| Module | Test Class | # Tests | Test Cases |
+|---|---|---|---|
+| Home Page | `HomePageTest` | 2 | TC_Home_01: verifyHomePageLoaded, TC_Home_02: verifyProductsLoaded |
+| Login | `LoginPageTest` | 4 | TC_Login_01: verifyLoginPageDisplayed, TC_Login_02: verifyLoginWithValidCredentials, TC_Login_03: verifyLoginWithInvalidCredentials, TC_Login_04: verifyLogout |
+| Register | `RegisterPageTest` | 5 | TC_Reg_01: verifyRegisterPageDisplayed, TC_Reg_02: verifyRegisterWithValidData, TC_Reg_03: verifyRegisterNavigationToLogin, TC_Reg_04a: verifyRegisterWithBadEmail, TC_Reg_04b: verifyRegisterWithShortPassword |
+| Cart | `CartPageTest` | 3 | TC_Cart_01: verifyCartPageDisplayed, TC_Cart_02: verifyCartTotalCalculation, TC_Cart_03: verifyRemoveItemFromCart |
+| Search & Filter | `SearchAndFilterPageTest` | 10 | TC_SF_01: verifySearchByNameBeef, TC_SF_02: verifySearchByDescriptionMince, TC_SF_03: verifyFilterByCategoryBakery, TC_SF_04: verifyFilterByAllCategories18Products, TC_SF_05: verifyFilterDairyAndSearchMilk, TC_SF_06: verifySearchByNameBeef_LoggedIn, TC_SF_07: verifySearchByDescriptionMince_LoggedIn, TC_SF_08: verifyFilterByCategoryBakery_LoggedIn, TC_SF_09: verifyFilterByAllCategories18Products_LoggedIn, TC_SF_10: verifyFilterDairyAndSearchMilk_LoggedIn |
+| Checkout | `CheckoutPageTest` | 1 | TC_Checkout_01: verifyCheckoutPageDisplayed |
 
 ## Prerequisites
 
