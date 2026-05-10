@@ -32,6 +32,12 @@ public class CheckoutPage extends BasePage {
     @FindBy(xpath = "//div[contains(@class,'error') or contains(@class,'alert')]")
     WebElement errorMessage;
 
+    @FindBy(xpath = "//div[contains(@class,'confirmation')] | //div[contains(@class,'success')] | //h1[contains(text(),'Order')] | //h2[contains(text(),'Thank')]")
+    WebElement orderConfirmation;
+
+    @FindBy(xpath = "//a[contains(text(),'Continue shopping')]")
+    WebElement continueShoppingButton;
+
     public CheckoutPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -77,5 +83,13 @@ public class CheckoutPage extends BasePage {
         WebElement orderTotal = driver.findElement(org.openqa.selenium.By.xpath(
                 "//div[@class='cart-summary__total']"));
         return getText(orderTotal);
+    }
+
+    public boolean isOrderConfirmationVisible() {
+        return isDisplayed(orderConfirmation);
+    }
+
+    public void clickContinueShopping() {
+        click(continueShoppingButton);
     }
 }

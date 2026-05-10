@@ -5,6 +5,7 @@ import com.bidshop.pages.CartPage;
 import com.bidshop.pages.CheckoutPage;
 import com.bidshop.pages.HomePage;
 import com.bidshop.pages.LoginPage;
+import com.bidshop.utils.ConfigReader;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -12,6 +13,7 @@ public class CheckoutPageTest extends BaseTest {
 
     private static final String VALID_EMAIL = "test1@gmail.com";
     private static final String VALID_PASSWORD = "123456";
+    private final ConfigReader config = new ConfigReader();
 
     private void addItemToCartAndProceedToCheckout() {
         LoginPage loginPage = new LoginPage(driver);
@@ -36,5 +38,17 @@ public class CheckoutPageTest extends BaseTest {
         Assert.assertTrue(checkoutPage.isShippingFieldsVisible()
                         || checkoutPage.isOrderSummaryVisible(),
                 "Shipping fields or order summary should be visible on checkout page");
+
+        checkoutPage.enterShippingName("John Doe");
+        checkoutPage.enterShippingAddress("123 Main St");
+        checkoutPage.enterShippingCity("Auckland");
+        checkoutPage.enterShippingPostcode("1010");
+        checkoutPage.clickPlaceOrder();
+
+        Assert.assertTrue(checkoutPage.isOrderConfirmationVisible(),
+                "Order confirmation should be visible after placing order");
+        checkoutPage.clickContinueShopping();
+        Assert.assertTrue(checkoutPage.getCurrentUrl().equals(config.getProperty("base.url")) || !checkoutPage.getCurrentUrl().contains("/checkout"),
+                "User should be redirected to homepage after clicking Continue Shopping");
     }
 }
