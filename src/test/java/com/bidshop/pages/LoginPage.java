@@ -17,7 +17,7 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//input[@data-testid='login-password']")
     WebElement passwordField;
 
-    @FindBy(xpath = "//button[@data-testid='login-submit']")
+    @FindBy(xpath = "//button[contains(text(),'Log in')]")
     WebElement loginSubmitButton;
 
     @FindBy(xpath = "//a[contains(text(),'Register here')]")
@@ -26,10 +26,10 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//a[contains(text(),'Already have account? Log in')]")
     WebElement alreadyHaveAccountLink;
 
-    @FindBy(xpath = "//div[contains(@class,'error') or contains(@class,'alert')]")
+    @FindBy(xpath = "//p[contains(text(),'Invalid') or contains(text(),'required')]")
     WebElement errorMessage;
 
-    @FindBy(xpath = "//button[contains(text(),'Logout')]")
+    @FindBy(xpath = "//button[contains(text(),'Log out')]")
     WebElement logoutButton;
 
     @FindBy(xpath = "//span[contains(@class,'user-email') or contains(text(),'Welcome')]")
@@ -89,7 +89,8 @@ public class LoginPage extends BasePage {
     }
 
     public boolean isLoginSuccessful() {
-        return isDisplayed(welcomeMessage) || isDisplayed(logoutButton);
+        return getCurrentUrl().equals(config.getProperty("base.url") + "/")
+                || getCurrentUrl().equals(config.getProperty("base.url"));
     }
 
     public void clickLogout() {

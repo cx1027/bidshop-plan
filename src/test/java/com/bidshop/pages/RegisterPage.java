@@ -20,16 +20,16 @@ public class RegisterPage extends BasePage {
     @FindBy(xpath = "//input[@data-testid='register-password']")
     WebElement passwordField;
 
-    @FindBy(xpath = "//button[@data-testid='register-submit']")
+    @FindBy(xpath = "//button[contains(text(),'Create account')]")
     WebElement createAccountButton;
 
-    @FindBy(xpath = "//a[contains(text(),'Already have account? Log in')]")
+    @FindBy(xpath = "//a[contains(text(),'Already have')] | //a[contains(@href,'/login')]")
     WebElement alreadyHaveAccountLink;
 
-    @FindBy(xpath = "//div[contains(@class,'error') or contains(@class,'alert')]")
+    @FindBy(xpath = "//p[contains(text(),'Invalid') or contains(text(),'required') or contains(text(),'already') or contains(text(),'error') or contains(text(),'taken')]")
     WebElement errorMessage;
 
-    @FindBy(xpath = "//span[contains(text(),'success') or contains(text(),'created')]")
+    @FindBy(xpath = "//p[contains(text(),'success') or contains(text(),'created') or contains(text(),'Account') or contains(text(),'Welcome')]")
     WebElement successMessage;
 
     public RegisterPage(WebDriver driver) {

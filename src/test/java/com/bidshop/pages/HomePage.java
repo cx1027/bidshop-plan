@@ -20,14 +20,17 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//a[contains(text(),'Bakery')]")
     WebElement bakeryCategory;
 
-    @FindBy(xpath = "//button[contains(text(),'Log in to buy')]")
+    @FindBy(xpath = "//a[contains(text(),'Log in')]")
     WebElement loginToBuyButton;
 
     @FindBy(xpath = "//div[contains(@class,'product-card') or contains(@class,'product')]")
     WebElement productCard;
 
-    @FindBy(xpath = "//button[contains(text(),'Logout')]")
+    @FindBy(xpath = "//button[contains(text(),'Log out')]")
     WebElement logoutButton;
+
+    @FindBy(xpath = "//a[contains(@href,'/login') and contains(text(),'Log in')]")
+    WebElement loginLink;
 
     @FindBy(xpath = "//button[@data-testid='add-to-cart']")
     WebElement addToCartButton;
@@ -91,5 +94,9 @@ public class HomePage extends BasePage {
 
     public boolean isLogoutButtonVisible() {
         return isDisplayed(logoutButton);
+    }
+
+    public boolean isLoginLinkVisible() {
+        return isDisplayed(loginLink);
     }
 }

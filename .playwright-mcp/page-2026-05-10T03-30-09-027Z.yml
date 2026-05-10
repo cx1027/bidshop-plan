@@ -1,0 +1,36 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - link "B Bidshop" [ref=e4] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e5]: B
+      - generic [ref=e6]: Bidshop
+    - navigation [ref=e7]:
+      - link "Shop" [ref=e8] [cursor=pointer]:
+        - /url: /
+      - link "Cart" [ref=e9] [cursor=pointer]:
+        - /url: /cart
+    - generic [ref=e10]:
+      - link "Log in" [ref=e11] [cursor=pointer]:
+        - /url: /login
+      - link "Register" [ref=e12] [cursor=pointer]:
+        - /url: /register
+  - main [ref=e13]:
+    - generic [ref=e14]:
+      - generic [ref=e16]:
+        - heading "Fresh food, delivered to your kitchen." [level=1] [ref=e17]
+        - paragraph [ref=e18]: Bidshop supplies cafes, restaurants and foodservice businesses across Aotearoa with quality ingredients from trusted local suppliers.
+      - generic [ref=e19]:
+        - searchbox "Search products…" [ref=e20]
+        - combobox [ref=e21]:
+          - option "All categories" [selected]
+          - option "Bakery"
+          - option "Beverages"
+          - option "Dairy"
+          - option "Fresh Produce"
+          - option "Frozen"
+          - option "Meat & Poultry"
+          - option "Pantry"
+          - option "Seafood"
+        - generic [ref=e22]: Loading products…
+  - contentinfo [ref=e23]:
+    - generic [ref=e24]: © 2026 Bidshop demo – built for the Bidfood SDET technical test.

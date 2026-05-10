@@ -8,8 +8,8 @@ import org.testng.annotations.Test;
 
 public class LoginPageTest extends BaseTest {
 
-    private static final String VALID_EMAIL = "test1@gmail.com";
-    private static final String VALID_PASSWORD = "123456";
+    private static final String VALID_EMAIL = "testlogin@example.com";
+    private static final String VALID_PASSWORD = "password123";
     private static final String INVALID_EMAIL = "invalid@test.com";
     private static final String INVALID_PASSWORD = "wrongpassword";
 
@@ -34,7 +34,8 @@ public class LoginPageTest extends BaseTest {
         HomePage homePage = loginPage.login(VALID_EMAIL, VALID_PASSWORD);
 
         boolean loginSuccess = homePage.isLogoutButtonVisible()
-                || homePage.getCurrentUrl().equals(homePage.getPageTitle());
+                || homePage.getCurrentUrl().equals(config.getProperty("base.url") + "/")
+                || homePage.getCurrentUrl().equals(config.getProperty("base.url"));
         Assert.assertTrue(loginSuccess,
                 "User should be logged in successfully with valid credentials");
     }
@@ -58,7 +59,7 @@ public class LoginPageTest extends BaseTest {
         homePage.clickLogout();
 
         boolean onHomePage = homePage.getCurrentUrl().contains("/");
-        boolean loginButtonVisible = homePage.isSearchBarVisible();
+        boolean loginButtonVisible = homePage.isLoginLinkVisible();
         Assert.assertTrue(onHomePage || loginButtonVisible,
                 "User should be redirected to home page after logout without user session");
     }
