@@ -53,15 +53,27 @@ public class RegisterPageTest extends BaseTest {
                 "Email field should be visible on login page");
     }
 
-    @Test(priority = 4, description = "TC_Reg_04: Verify registration is rejected with invalid data (bad email, short password)")
-    public void verifyRegisterWithInvalidData() {
+    @Test(priority = 4, description = "TC_Reg_04a: Verify registration is rejected with bad email")
+    public void verifyRegisterWithBadEmail() {
         RegisterPage registerPage = new RegisterPage(driver);
         registerPage.navigateToRegister();
-        registerPage.register("", INVALID_EMAIL, SHORT_PASSWORD);
+        registerPage.register(VALID_NAME, INVALID_EMAIL, VALID_PASSWORD);
 
         boolean stillOnRegisterPage = registerPage.getCurrentUrl().contains("/register");
         boolean hasValidationError = registerPage.isErrorMessageVisible();
         Assert.assertTrue(stillOnRegisterPage || hasValidationError,
-                "User should stay on register page or validation error should be displayed for invalid data");
+                "User should stay on register page or validation error should be displayed for bad email");
+    }
+
+    @Test(priority = 5, description = "TC_Reg_04b: Verify registration is rejected with short password")
+    public void verifyRegisterWithShortPassword() {
+        RegisterPage registerPage = new RegisterPage(driver);
+        registerPage.navigateToRegister();
+        registerPage.register(VALID_NAME, VALID_EMAIL, SHORT_PASSWORD);
+
+        boolean stillOnRegisterPage = registerPage.getCurrentUrl().contains("/register");
+        boolean hasValidationError = registerPage.isErrorMessageVisible();
+        Assert.assertTrue(stillOnRegisterPage || hasValidationError,
+                "User should stay on register page or validation error should be displayed for short password");
     }
 }

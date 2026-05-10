@@ -27,31 +27,37 @@ bidshop-automation/
 │   │   ├── LoginPage.java
 │   │   ├── RegisterPage.java
 │   │   ├── CartPage.java
+│   │   ├── SearchAndFilterPage.java
 │   │   └── CheckoutPage.java
 │   ├── tests/
 │   │   ├── HomePageTest.java       # 2 tests
 │   │   ├── LoginPageTest.java      # 4 tests
-│   │   ├── RegisterPageTest.java    # 4 tests
+│   │   ├── RegisterPageTest.java    # 5 tests
 │   │   ├── CartPageTest.java       # 3 tests
+│   │   ├── SearchAndFilterPageTest.java  # 10 tests
 │   │   └── CheckoutPageTest.java   # 1 test
 │   ├── utils/
 │   │   ├── ConfigReader.java
+│   │   ├── TestDataReader.java
 │   │   ├── WaitUtils.java
 │   │   └── ScreenshotUtils.java
 │   └── listeners/
 │       └── TestListener.java        # ITestListener for reporting
 └── resources/
-    └── config.properties            # Base URL, browser, timeouts
+    ├── config.properties            # Base URL, browser, timeouts
+    └── testdata/
+        └── login-credentials.properties  # Test account credentials
 ```
 
-## Test Coverage (14 Tests)
+## Test Coverage (25 Tests)
 
 | Module | Test Class | # Tests |
 |---|---|---|
 | Home Page | `HomePageTest` | 2 |
 | Login | `LoginPageTest` | 4 |
-| Register | `RegisterPageTest` | 4 |
+| Register | `RegisterPageTest` | 5 |
 | Cart | `CartPageTest` | 3 |
+| Search & Filter | `SearchAndFilterPageTest` | 10 |
 | Checkout | `CheckoutPageTest` | 1 |
 
 ## Prerequisites
@@ -69,6 +75,11 @@ bidshop-automation/
 3. **Install Firefox**
    - Download from [mozilla.org/firefox](https://www.mozilla.org/firefox/)
    - WebDriverManager will auto-download the matching GeckoDriver
+
+4. **Create a test account manually**
+   The tests use the credentials stored in `resources/testdata/login-credentials.properties`. Create an account on the app with:
+   - Email: `testlogin@example.com`
+   - Password: `password123`
 
 ## Configuration
 
@@ -92,9 +103,11 @@ BASE_URL=http://localhost:5173/
 
 ## Test Credentials
 
+Credentials are stored in `resources/testdata/login-credentials.properties`. The default credentials are:
+
 | Username | Password |
 |---|---|
-| `test1@gmail.com` | `123456` |
+| `testlogin@example.com` | `password123` |
 
 ## Running Tests
 

@@ -3,15 +3,17 @@ package com.bidshop.tests;
 import com.bidshop.base.BaseTest;
 import com.bidshop.pages.HomePage;
 import com.bidshop.pages.LoginPage;
+import com.bidshop.utils.TestDataReader;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LoginPageTest extends BaseTest {
 
-    private static final String VALID_EMAIL = "testlogin@example.com";
-    private static final String VALID_PASSWORD = "password123";
-    private static final String INVALID_EMAIL = "invalid@test.com";
-    private static final String INVALID_PASSWORD = "wrongpassword";
+    private static final TestDataReader TEST_DATA = new TestDataReader("login-credentials.properties");
+    private static final String VALID_EMAIL = TEST_DATA.getProperty("valid.email");
+    private static final String VALID_PASSWORD = TEST_DATA.getProperty("valid.password");
+    private static final String INVALID_EMAIL = TEST_DATA.getProperty("invalid.email");
+    private static final String INVALID_PASSWORD = TEST_DATA.getProperty("invalid.password");
 
     @Test(priority = 1, description = "TC_Login_01: Verify login page is displayed when clicking 'Log in to buy'")
     public void verifyLoginPageDisplayed() {
