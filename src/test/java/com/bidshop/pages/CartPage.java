@@ -70,9 +70,7 @@ public class CartPage extends BasePage {
     }
 
     public void updateQuantity(int quantity) {
-        if (isDisplayed(quantityInput)) {
-            sendKeys(quantityInput, String.valueOf(quantity));
-        }
+        sendKeys(quantityInput, String.valueOf(quantity));
     }
 
     public double getSubtotal() {

@@ -63,16 +63,4 @@ public class TestListener implements ITestListener {
         int skipped = context.getSkippedTests().size();
         System.out.println("Results - Passed: " + passed + ", Failed: " + failed + ", Skipped: " + skipped);
         System.out.println("========================================");
-    }
-
-    @Override
-    public void onConfigurationFailure(ITestResult result) {
-        System.out.println(">>> CONFIGURATION FAILED: " + result.getMethod().getMethodName());
-        Object webDriverAttribute = result.getTestContext().getAttribute("driver");
-        if (webDriverAttribute instanceof WebDriver) {
-            WebDriver driver = (WebDriver) webDriverAttribute;
-            screenshotUtils = new ScreenshotUtils(driver);
-            screenshotUtils.captureScreenshot("CONFIG_FAILURE_" + result.getMethod().getMethodName());
-        }
-    }
-}
+    }}

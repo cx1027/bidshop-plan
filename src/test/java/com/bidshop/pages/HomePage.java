@@ -41,7 +41,7 @@ public class HomePage extends BasePage {
     }
 
     public String getPageTitle() {
-        return getPageTitle();
+        return driver.getTitle();
     }
 
     public boolean isSearchBarVisible() {

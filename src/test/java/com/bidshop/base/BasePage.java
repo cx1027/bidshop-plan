@@ -80,7 +80,7 @@ public class BasePage {
         js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
     }
 
-    protected String getCurrentUrl() {
+    public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }
 
