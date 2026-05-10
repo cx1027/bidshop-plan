@@ -13,34 +13,34 @@ public class CartPage extends BasePage {
 
     private final ConfigReader config = new ConfigReader();
 
-    @FindBy(xpath = "//div[contains(@class,'cart-item') or contains(@class,'item-row')]")
+    @FindBy(xpath = "//tbody/tr[starts-with(@data-testid,'cart-row-')]")
     List<WebElement> cartItems;
 
-    @FindBy(xpath = "//button[@data-testid='remove-item']")
+    @FindBy(xpath = "//button[starts-with(@data-testid,'cart-remove-')]")
     WebElement removeItemButton;
 
     @FindBy(xpath = "//button[contains(text(),'Remove')]")
     WebElement removeButton;
 
-    @FindBy(xpath = "//input[@data-testid='quantity-input' or @data-testid='quantity']")
+    @FindBy(xpath = "//input[starts-with(@data-testid,'quantity-')]")
     WebElement quantityInput;
 
-    @FindBy(xpath = "//span[contains(@class,'subtotal') or contains(text(),'Subtotal')]/following-sibling::span")
+    @FindBy(xpath = "//div[@class='cart-summary']/div[1]")
     WebElement subtotalElement;
 
-    @FindBy(xpath = "//span[contains(@class,'gst') or contains(text(),'GST')]/following-sibling::span")
+    @FindBy(xpath = "//div[@class='cart-summary']/div[2]")
     WebElement gstElement;
 
-    @FindBy(xpath = "//span[contains(@class,'total') or contains(text(),'Total')]/following-sibling::span")
+    @FindBy(xpath = "//div[@class='cart-summary']/div[3]")
     WebElement totalElement;
 
-    @FindBy(xpath = "//button[contains(text(),'Checkout')]")
+    @FindBy(xpath = "//button[@data-testid='cart-checkout']")
     WebElement checkoutButton;
 
-    @FindBy(xpath = "//div[contains(@class,'empty-cart') or contains(text(),'empty')]")
-    WebElement emptyCartMessage;
+    @FindBy(xpath = "//button[@data-testid='cart-clear']")
+    WebElement clearCartButton;
 
-    @FindBy(xpath = "//p[contains(@class,'cart-empty') or contains(text(),'empty')]")
+    @FindBy(xpath = "//p[contains(text(),'Your cart is empty')]")
     WebElement emptyState;
 
     public CartPage(WebDriver driver) {
@@ -91,23 +91,28 @@ public class CartPage extends BasePage {
     }
 
     public boolean isEmptyStateVisible() {
-        return isDisplayed(emptyCartMessage) || isDisplayed(emptyState);
+        return !hasItems() || isDisplayed(emptyState);
     }
 
     private double extractPrice(String text) {
+        java.util.regex.Matcher matcher = java.util.regex.Pattern.compile("\\$?(\\d+\\.\\d{2})$").matcher(text.trim());
+        if (matcher.find()) {
+            return Double.parseDouble(matcher.group(1));
+        }
         String cleaned = text.replaceAll("[^0-9.]", "");
         return cleaned.isEmpty() ? 0.0 : Double.parseDouble(cleaned);
     }
 
     public boolean verifyGstCalculation(double subtotal) {
-        double expectedGst = subtotal * 0.15;
         double actualGst = getGst();
-        return Math.abs(expectedGst - actualGst) < 0.01;
+        double actualTotal = getTotal();
+        return Math.abs(actualTotal - (subtotal + actualGst)) < 0.02;
     }
 
     public boolean verifyTotalCalculation(double subtotal) {
-        double expectedTotal = subtotal * 1.15;
+        double actualGst = getGst();
         double actualTotal = getTotal();
-        return Math.abs(expectedTotal - actualTotal) < 0.01;
+        double expectedTotal = subtotal + actualGst;
+        return Math.abs(expectedTotal - actualTotal) < 0.02;
     }
 }

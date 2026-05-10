@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class HomePage extends BasePage {
 
     @FindBy(xpath = "//input[@data-testid='search-bar']")
@@ -20,7 +22,7 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//a[contains(text(),'Bakery')]")
     WebElement bakeryCategory;
 
-    @FindBy(xpath = "//a[contains(text(),'Log in')]")
+    @FindBy(xpath = "//a[@data-testid='nav-login']")
     WebElement loginToBuyButton;
 
     @FindBy(xpath = "//div[contains(@class,'product-card') or contains(@class,'product')]")
@@ -29,11 +31,11 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//button[contains(text(),'Log out')]")
     WebElement logoutButton;
 
-    @FindBy(xpath = "//a[contains(@href,'/login') and contains(text(),'Log in')]")
+    @FindBy(xpath = "//a[@data-testid='nav-login']")
     WebElement loginLink;
 
-    @FindBy(xpath = "//button[@data-testid='add-to-cart']")
-    WebElement addToCartButton;
+    @FindBy(xpath = "//button[contains(text(),'Add to cart')]")
+    List<WebElement> addToCartButtons;
 
     @FindBy(xpath = "//a[@data-testid='cart-icon' or contains(@href,'cart')]")
     WebElement cartIcon;
@@ -80,7 +82,9 @@ public class HomePage extends BasePage {
     }
 
     public void clickAddToCart() {
-        clickWithJs(addToCartButton);
+        if (!addToCartButtons.isEmpty()) {
+            clickWithJs(addToCartButtons.get(0));
+        }
     }
 
     public void clickCartIcon() {

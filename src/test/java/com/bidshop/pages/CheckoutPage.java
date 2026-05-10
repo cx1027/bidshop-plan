@@ -11,32 +11,23 @@ public class CheckoutPage extends BasePage {
 
     private final ConfigReader config = new ConfigReader();
 
-    @FindBy(xpath = "//input[@data-testid='shipping-name']")
+    @FindBy(xpath = "//input[@data-testid='checkout-name']")
     WebElement shippingName;
 
-    @FindBy(xpath = "//input[@data-testid='shipping-address']")
+    @FindBy(xpath = "//input[@data-testid='checkout-address']")
     WebElement shippingAddress;
 
-    @FindBy(xpath = "//input[@data-testid='shipping-city']")
+    @FindBy(xpath = "//input[@data-testid='checkout-city']")
     WebElement shippingCity;
 
-    @FindBy(xpath = "//input[@data-testid='payment-card']")
-    WebElement paymentCard;
+    @FindBy(xpath = "//input[@data-testid='checkout-postcode']")
+    WebElement shippingPostcode;
 
-    @FindBy(xpath = "//input[@data-testid='payment-expiry']")
-    WebElement paymentExpiry;
-
-    @FindBy(xpath = "//input[@data-testid='payment-cvv']")
-    WebElement paymentCvv;
-
-    @FindBy(xpath = "//button[contains(text(),'Place Order')]")
+    @FindBy(xpath = "//button[@data-testid='checkout-submit']")
     WebElement placeOrderButton;
 
-    @FindBy(xpath = "//div[contains(@class,'order-summary') or contains(@class,'summary')]")
+    @FindBy(xpath = "//aside[contains(@class,'summary')] | //aside[contains(text(),'Order summary')] | //h2[contains(text(),'Order summary')]/..")
     WebElement orderSummary;
-
-    @FindBy(xpath = "//span[contains(@class,'order-total')]")
-    WebElement orderTotal;
 
     @FindBy(xpath = "//div[contains(@class,'error') or contains(@class,'alert')]")
     WebElement errorMessage;
@@ -70,16 +61,8 @@ public class CheckoutPage extends BasePage {
         sendKeys(shippingCity, city);
     }
 
-    public void enterPaymentCard(String card) {
-        sendKeys(paymentCard, card);
-    }
-
-    public void enterPaymentExpiry(String expiry) {
-        sendKeys(paymentExpiry, expiry);
-    }
-
-    public void enterPaymentCvv(String cvv) {
-        sendKeys(paymentCvv, cvv);
+    public void enterShippingPostcode(String postcode) {
+        sendKeys(shippingPostcode, postcode);
     }
 
     public void clickPlaceOrder() {
@@ -91,6 +74,8 @@ public class CheckoutPage extends BasePage {
     }
 
     public String getOrderTotalText() {
+        WebElement orderTotal = driver.findElement(org.openqa.selenium.By.xpath(
+                "//div[@class='cart-summary__total']"));
         return getText(orderTotal);
     }
 }

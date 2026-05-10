@@ -1,0 +1,26 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - link "B Bidshop" [ref=e4] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e5]: B
+      - generic [ref=e6]: Bidshop
+    - navigation [ref=e7]:
+      - link "Shop" [ref=e8] [cursor=pointer]:
+        - /url: /
+      - link "Cart" [ref=e9] [cursor=pointer]:
+        - /url: /cart
+    - generic [ref=e10]:
+      - link "Log in" [ref=e11] [cursor=pointer]:
+        - /url: /login
+      - link "Register" [ref=e12] [cursor=pointer]:
+        - /url: /register
+  - main [ref=e13]:
+    - generic [ref=e14]:
+      - heading "Your cart" [level=1] [ref=e15]
+      - paragraph [ref=e16]:
+        - text: Please
+        - link "log in" [ref=e17] [cursor=pointer]:
+          - /url: /login
+        - text: to view your cart.
+  - contentinfo [ref=e18]:
+    - generic [ref=e19]: © 2026 Bidshop demo – built for the Bidfood SDET technical test.
